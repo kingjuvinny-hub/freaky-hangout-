@@ -1,0 +1,17 @@
+{
+  "name": "Freaky Hangout",
+  "short_name": "Freaky Hangout",
+  "description": "The ultimate offline party game! Now with Team Mode, Custom Dare Packs, Timed Dares, Game Awards, and multiple themes. Add players, choose from various dare packs, add your own challenges, and get the party started. Supports adult mode and saves your game progress.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#ec4899",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

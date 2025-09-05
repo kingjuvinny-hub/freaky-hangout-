@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freaky Hangout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Creepster&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    
+    <!-- PWA settings -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#ec4899" />
+
+    <style>
+      :root {
+        --bg-color-start: hsla(253, 100%, 7%, 1);
+        --bg-color-end: hsla(300, 100%, 25%, 1);
+        --font-main: 'Poppins', sans-serif;
+        --color-primary: #ec4899; /* pink-500 */
+        --color-secondary: #06b6d4; /* cyan-500 */
+        --color-accent: #a855f7; /* purple-500 */
+        --color-text: #f0f6fc;
+        --color-glow: var(--color-primary);
+        --border-color: #581c87; /* purple-900 */
+      }
+
+      .theme-spooky {
+        --bg-color-start: hsl(25, 95%, 8%);
+        --bg-color-end: hsl(0, 0%, 5%);
+        --font-main: 'Creepster', cursive;
+        --color-primary: #f97316; /* orange-500 */
+        --color-secondary: #a3e635; /* lime-400 */
+        --color-accent: #7e22ce; /* purple-700 */
+        --color-text: #d4d4d4; /* gray-400 */
+        --color-glow: #eab308; /* yellow-500 */
+        --border-color: #4a044e; /* fuchsia-950 */
+      }
+      
+      .theme-pirate {
+        --bg-color-start: #0a1829;
+        --bg-color-end: #2c3e50;
+        --font-main: 'IM Fell English SC', serif;
+        --color-primary: #d4af37; /* gold */
+        --color-secondary: #c0c0c0; /* silver */
+        --color-accent: #cd7f32; /* bronze */
+        --color-text: #e0e0e0;
+        --color-glow: #ffdf00; /* gold glow */
+        --border-color: #4a2c2a; /* dark brown */
+      }
+
+      body {
+        background-color: #1a1a2e;
+        background-image: 
+          radial-gradient(at 0% 0%, var(--bg-color-start) 0px, transparent 50%),
+          radial-gradient(at 98% 98%, var(--bg-color-end) 0px, transparent 50%);
+        color: var(--color-text);
+        font-family: var(--font-main);
+      }
+      .font-poppins { font-family: 'Poppins', sans-serif; }
+      .font-creepster { font-family: 'Creepster', cursive; }
+      .font-pirate { font-family: 'IM Fell English SC', serif; }
+      
+      /* Custom animations */
+      @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+      .animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+
+      @keyframes slide-up { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+      .animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
+      
+      @keyframes pop-in { 0% { transform: scale(0.5); opacity: 0; } 75% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); } }
+      .animate-pop-in { animation: pop-in 0.4s ease-out forwards; }
+      
+      @keyframes neon-glow {
+        0%, 100% { filter: drop-shadow(0 0 3px currentColor); }
+        50% { filter: drop-shadow(0 0 10px currentColor); }
+      }
+      .animate-neon-glow { animation: neon-glow 2.5s ease-in-out infinite; }
+
+      @keyframes timer-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+      
+      @keyframes on-fire-flicker {
+        0%, 100% { filter: drop-shadow(0 0 5px #f97316) drop-shadow(0 0 10px #f59e0b); opacity: 1; }
+        50% { filter: drop-shadow(0 0 8px #f97316) drop-shadow(0 0 15px #f59e0b); opacity: 0.9; }
+      }
+      .on-fire { animation: on-fire-flicker 1.5s ease-in-out infinite; }
+      
+      @keyframes avatar-bounce {
+        0%, 100% { transform: translateY(0) scale(1.1); }
+        50% { transform: translateY(-10px) scale(1.1); }
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #161b22; }
+      ::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "vite": "https://aistudiocdn.com/vite@^7.1.3",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.0.2",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.1.1"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <div id="toast-container" class="fixed top-4 right-4 z-[100]"></div>
+    <script type="module" src="/src/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
